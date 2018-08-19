@@ -1,6 +1,6 @@
 package com.zerogdev.easyshorturl.kotlin.data
 
-interface ResponseData {
-    val message: String
-    val code: String
+abstract  class ResponseData {
+    val message: String ?= null
+    val code: String ?= null
 }
