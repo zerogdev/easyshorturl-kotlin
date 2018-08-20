@@ -2,7 +2,6 @@ package com.zerogdev.easyshorturl.kotlin.util
 
 import com.zerogdev.easyshorturl.kotlin.data.ShortUrlData
 import com.zerogdev.easyshorturl.kotlin.data.ShortUrlResult
-import com.zerogdev.easyshorturl.kotlin.listener.ShortUrlCallBack
 import com.zerogdev.easyshorturl.kotlin.service.NaverService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -39,7 +38,10 @@ class DataManager{
                 .create(NaverService::class.java) //자바코드의 class 함수 사용 방법
     }
 
-    public fun loadShorturl(url:String, success: (ShortUrlData) -> Unit, error: (Call<ShortUrlResult>, Throwable) -> Unit) {
+    /**
+     * 단축URL 생성 요청
+     */
+    fun loadShorturl(url:String, success: (ShortUrlData) -> Unit, error: (Call<ShortUrlResult>, Throwable) -> Unit) {
         val call = naverService!!.getShortUrl(url)
         call.enqueue(object:Callback<ShortUrlResult> {
 
