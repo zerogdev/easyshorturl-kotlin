@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import com.zerogdev.easyshorturl.kotlin.data.ShortUrlData
@@ -22,22 +23,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        dataManager = DataManager()
+
         //version
         version_text.text = "ver " + BuildConfig.VERSION_NAME
 
-        dataManager = DataManager()
-
         //생성 버튼
         var shortenBtn:Button = findViewById(R.id.shorten_btn)
-        shortenBtn.setOnClickListener {
+        shortenBtn.setOnClickListener { it ->
             //람다 표현식
-            val enterUrl : String = enter_url.text.toString();
-            if (!enterUrl.isEmpty()) {
-                val enterUrl = enter_url.text
-                if (!TextUtils.isEmpty(enterUrl)) {
-                    //단축 URL 요청
+            enter_url.text.toString().let { text ->
+                if (text.isNotEmpty()) {
                     dataManager.loadShorturl(
-                            enterUrl.toString(),
+                            text,
                             success = {
                                 Toast.makeText(this, it.url, Toast.LENGTH_SHORT).show()
                             },
@@ -49,10 +47,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         //edittext clear X 버튼
-        text_clear_btn.setOnClickListener {
-            enter_url.text.clear()
+        View.OnClickListener { enter_url.text.clear() }.apply {
+            text_clear_btn.setOnClickListener(this)
         }
-
-
     }
 }
