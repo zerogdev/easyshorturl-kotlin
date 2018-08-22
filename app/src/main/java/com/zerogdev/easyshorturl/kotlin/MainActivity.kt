@@ -2,12 +2,9 @@ package com.zerogdev.easyshorturl.kotlin
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import com.zerogdev.easyshorturl.kotlin.data.ShortUrlData
 import com.zerogdev.easyshorturl.kotlin.util.DataManager
 
 //apply plugin: 'kotlin-android-extensions' 을 추가하고 import 하면 R.id에 바로 접근이 가능
@@ -15,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-
+    //lateinit var 선언
     private lateinit var dataManager : DataManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +29,10 @@ class MainActivity : AppCompatActivity() {
         var shortenBtn:Button = findViewById(R.id.shorten_btn)
         shortenBtn.setOnClickListener { it ->
             //람다 표현식
+            //let 사용
             enter_url.text.toString().let { text ->
                 if (text.isNotEmpty()) {
+                    //람다 표현식으로 콜백 사용하기
                     dataManager.loadShorturl(
                             text,
                             success = {
@@ -47,8 +46,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         //edittext clear X 버튼
+        //apply 를 사용해서 클릭 리스너 설정
         View.OnClickListener { enter_url.text.clear() }.apply {
             text_clear_btn.setOnClickListener(this)
         }
+
+
+        //object
+        SingletonObject.showText()
+        SingletonObject.text = "changed text"
+        SingletonObject.showText()
+
+
     }
 }
