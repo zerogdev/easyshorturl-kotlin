@@ -1,10 +1,12 @@
 package com.zerogdev.easyshorturl.kotlin
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import com.zerogdev.easyshorturl.kotlin.service.NaverService
 import com.zerogdev.easyshorturl.kotlin.util.DataManager
 
 //apply plugin: 'kotlin-android-extensions' 을 추가하고 import 하면 R.id에 바로 접근이 가능
@@ -37,6 +39,7 @@ class MainActivity : AppCompatActivity() {
                             text,
                             success = {
                                 Toast.makeText(this, it.url, Toast.LENGTH_SHORT).show()
+                                share(it.url)
                             },
                             error = { _, t ->
                                 Toast.makeText(this, "error: " + t.message, Toast.LENGTH_SHORT).show()
@@ -56,7 +59,19 @@ class MainActivity : AppCompatActivity() {
         SingletonObject.showText()
         SingletonObject.text = "changed text"
         SingletonObject.showText()
+    }
 
+    private fun share(url: String) {
+        var shareIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, url)
+        }
+        val clipboardIntent = CopyToClipboardActivity.createCopyToClipboardIntent(this, url)
+        val title = getString(R.string.share) + " " + url
+        val chooserIntent = Intent.createChooser(shareIntent, title)
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, clipboardIntent)
 
+        startActivity(chooserIntent)
     }
 }

@@ -26,7 +26,7 @@ class CopyToClipboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        intent.data?.let { ClipBoardFactory.makeClip(this, it.toString()) }
+        intent.data?.let { ClipBoardFactory.makeClip(this, it.toString()).clip() }
     }
 
 //    private fun copyTextToClipboard(url:String) {
