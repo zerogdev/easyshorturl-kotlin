@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
 
         //version
         version_text.text = "ver " + BuildConfig.VERSION_NAME
-
         //생성 버튼
         var shortenBtn:Button = findViewById(R.id.shorten_btn)
         shortenBtn.setOnClickListener { it ->
@@ -37,16 +36,18 @@ class MainActivity : AppCompatActivity() {
                     //람다 표현식으로 콜백 사용하기
                     dataManager.loadShorturl(
                             text,
-                            success = {
+                            {
                                 Toast.makeText(this, it.url, Toast.LENGTH_SHORT).show()
                                 share(it.url)
                             },
-                            error = { _, t ->
+                            { _, t ->
                                 Toast.makeText(this, "error: " + t.message, Toast.LENGTH_SHORT).show()
                             })
                 }
             }
         }
+
+
 
         //edittext clear X 버튼
         //apply 를 사용해서 클릭 리스너 설정
