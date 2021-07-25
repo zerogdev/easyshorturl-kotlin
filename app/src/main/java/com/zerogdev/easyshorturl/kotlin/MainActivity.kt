@@ -1,16 +1,12 @@
 package com.zerogdev.easyshorturl.kotlin
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.Toast
+import android.widget.*
 import com.zerogdev.easyshorturl.kotlin.service.NaverService
 import com.zerogdev.easyshorturl.kotlin.util.DataManager
-
-//apply plugin: 'kotlin-android-extensions' 을 추가하고 import 하면 R.id에 바로 접근이 가능
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,18 +16,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(findViewById(R.id.toolbar))
 
         dataManager = DataManager()
 
         //version
-        version_text.text = "ver " + BuildConfig.VERSION_NAME
+        findViewById<TextView>(R.id.version_text).text = "ver " + BuildConfig.VERSION_NAME
         //생성 버튼
         var shortenBtn:Button = findViewById(R.id.shorten_btn)
         shortenBtn.setOnClickListener { it ->
             //람다 표현식
             //let 사용
-            enter_url.text.toString().let { text ->
+            findViewById<TextView>(R.id.enter_url).text.toString().let { text ->
                 if (text.isNotEmpty()) {
                     //람다 표현식으로 콜백 사용하기
                     dataManager.loadShorturl(
@@ -49,10 +45,11 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
         //edittext clear X 버튼
         //apply 를 사용해서 클릭 리스너 설정
-        View.OnClickListener { enter_url.text.clear() }.apply {
-            text_clear_btn.setOnClickListener(this)
+        View.OnClickListener { findViewById<EditText>(R.id.enter_url).text.clear() }.apply {
+            findViewById<ImageView>(R.id.text_clear_btn).setOnClickListener(this)
         }
 
 

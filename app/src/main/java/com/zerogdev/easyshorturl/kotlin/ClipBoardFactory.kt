@@ -15,6 +15,6 @@ class ClipBoardFactory private constructor(val context: Context, val url:String)
         Log.d("TAG", url)
         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
         val clip = ClipData.newPlainText("URL", url)
-        clipboard!!.primaryClip = clip
+        clipboard?.setPrimaryClip(clip)
     }
 }
