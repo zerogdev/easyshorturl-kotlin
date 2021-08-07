@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout
+
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:background="?attr/selectableItemBackground"
+  android:padding="@dimen/default_outer_margin">
+
+  <ImageView
+    android:id="@+id/coin_image"
+    android:layout_width="@dimen/coin_image_size"
+    android:layout_height="@dimen/coin_image_size"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:src="@drawable/coin_placeholder_image"
+    android:contentDescription="@null" />
+
+  <androidx.appcompat.widget.AppCompatTextView
+    android:id="@+id/coin_name"
+    style="@style/TextAppearance.AppCompat.Title"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/small_margin"
+    android:layout_marginEnd="@dimen/default_outer_margin"
+    android:maxLines="1"
+    app:autoSizeTextType="uniform"
+    app:layout_constraintBottom_toBottomOf="@+id/coin_image"
+    app:layout_constraintEnd_toStartOf="@+id/guideline"
+    app:layout_constraintHorizontal_bias="0"
+    app:layout_constraintVertical_bias="0"
+    app:layout_constraintStart_toEndOf="@id/coin_image"
+    app:layout_constraintTop_toTopOf="@id/coin_image"
+    tools:text="Bitcoin" />
+
+  <TextView
+    android:id="@+id/coin_symbol"
+    style="@style/TextAppearance.AppCompat.Body2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/small_margin"
+    app:layout_constraintBottom_toBottomOf="@id/coin_image"
+    app:layout_constraintStart_toEndOf="@id/coin_image"
+    tools:text="BTC" />
+
+  <TextView
+    android:id="@+id/coin_price_label"
+    style="@style/TextAppearance.AppCompat.Body1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/small_margin"
+    android:text="@string/price_label"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="@id/coin_image"
+    app:layout_constraintTop_toBottomOf="@id/coin_image" />
+
+  <TextView
+    android:id="@+id/coin_price"
+    style="@style/TextAppearance.AppCompat.Caption"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/small_margin"
+    app:layout_constraintBottom_toBottomOf="@id/coin_price_label"
+    app:layout_constraintEnd_toStartOf="@+id/guideline"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toEndOf="@id/coin_price_label"
+    app:layout_constraintTop_toTopOf="@id/coin_price_label"
+    tools:text="$60,709.48" />
+
+  <TextView
+    android:id="@+id/coin_market_cap_label"
+    style="@style/TextAppearance.AppCompat.Body1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/market_cap_label"
+    app:layout_constraintBottom_toTopOf="@+id/coin_supply_label"
+    app:layout_constraintStart_toStartOf="@id/guideline"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_chainStyle="spread_inside" />
+
+  <TextView
+    android:id="@+id/coin_market_cap"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/small_margin"
+    android:layout_marginEnd="@dimen/small_margin"
+    app:layout_constraintBottom_toBottomOf="@id/coin_market_cap_label"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toEndOf="@id/coin_market_cap_label"
+    app:layout_constraintTop_toTopOf="@id/coin_market_cap_label"
+    tools:text="$1.13t" />
+
+  <TextView
+    android:id="@+id/coin_supply_label"
+    style="@style/TextAppearance.AppCompat.Body1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/coin_supply_label"
+    app:layout_constraintBottom_toTopOf="@+id/coin_change_label"
+    app:layout_constraintStart_toStartOf="@id/guideline"
+    app:layout_constraintTop_toBottomOf="@+id/coin_market_cap_label" />
+
+  <TextView
+    android:id="@+id/coin_supply"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/small_margin"
+    android:layout_marginEnd="@dimen/small_margin"
+    app:layout_constraintBottom_toBottomOf="@id/coin_supply_label"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toEndOf="@id/coin_supply_label"
+    app:layout_constraintTop_toTopOf="@id/coin_supply_label"
+    tools:text="$18.65m" />
+
+  <TextView
+    android:id="@+id/coin_change_label"
+    style="@style/TextAppearance.AppCompat.Body1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/coin_change_label"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="@id/guideline"
+    app:layout_constraintTop_toBottomOf="@+id/coin_supply_label" />
+
+  <TextView
+    android:id="@+id/coin_change"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/small_margin"
+    android:layout_marginEnd="@dimen/small_margin"
+    app:layout_constraintBottom_toBottomOf="@id/coin_change_label"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toEndOf="@id/coin_change_label"
+    app:layout_constraintTop_toTopOf="@id/coin_change_label"
+    tools:text="6.90%" />
+
+  <androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintGuide_percent="0.60" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
